@@ -1,0 +1,2 @@
+class ComponentController < ApplicationController
+end
