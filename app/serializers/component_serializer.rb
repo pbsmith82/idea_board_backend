@@ -1,4 +1,9 @@
 class ComponentSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  
+  has_many :ideas
+  attributes :id, :name
+
+
+
 end
