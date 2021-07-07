@@ -15,10 +15,33 @@ class IdeasController < ApplicationController
         if idea.save
             render json: IdeaSerializer.new(idea)
         else 
-            #byebug
             render json: {error: "Idea Couldn't Be Saved!"}
         end 
 
+    end
+    
+    def update 
+        idea = Idea.find(params[:id])
+        if idea.update(idea_create_params)
+            render json: IdeaSerializer.new(idea)
+        else 
+            render json: {error: "Idea Couldn't Be Saved!"}
+        end
+    end 
+
+    def destroy 
+        idea = Idea.find(params[:id])
+        idea.destroy 
+        render json: {message: "Successfully Deleted Project: #{idea.title}!"}
+    end
+    
+    def update 
+        idea = Idea.find(params[:id])
+        if idea.update(idea_create_params)
+            render json: IdeaSerializer.new(idea)
+        else 
+            render json: {error: "Idea Couldn't Be Saved!"}
+        end
     end 
 
     private 
