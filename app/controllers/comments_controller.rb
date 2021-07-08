@@ -29,20 +29,6 @@ class CommentsController < ApplicationController
 
     end 
 
-    def destroy 
-        story = Story.find(params[:id])
-        story.destroy 
-        render json: {message: "Successfully Deleted Story: #{story.title}!"}
-    end 
-
-    def update 
-        story = Story.find(params[:id])
-        if story.update(story_params)
-            render json: StorySerializer.new(story)
-        else 
-            render json: {error: "Story Couldn't Be Saved!"}
-        end
-    end 
 
     private 
 
