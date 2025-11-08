@@ -8,7 +8,7 @@ class IdeaSerializer
   
   attribute :component_name do |object|
     component = Component.find_by_id(object.component_id)
-    component.name
+    component ? component.name : 'Uncategorized'
   end
 
   attribute :comments do |object|
