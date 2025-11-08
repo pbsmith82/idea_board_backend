@@ -19,6 +19,11 @@
    heroku create your-app-name-backend
    ```
 
+2a. **Set Ruby Buildpack** (if multiple buildpacks detected)
+   ```bash
+   heroku buildpacks:set heroku/ruby
+   ```
+
 3. **Add PostgreSQL Addon**
    ```bash
    heroku addons:create heroku-postgresql:mini
@@ -92,7 +97,15 @@
 
 ## Troubleshooting
 
+- **Multiple Buildpacks Detected**: Set the Ruby buildpack explicitly with `heroku buildpacks:set heroku/ruby`
+- **Ruby Version Not Found**: Ensure `runtime.txt` specifies a supported Ruby version (3.1.5 or later)
 - **Database Issues**: Run `heroku run rails db:migrate` if migrations fail
 - **CORS Errors**: Ensure `FRONTEND_URL` is set correctly in backend
 - **Build Failures**: Check Heroku logs with `heroku logs --tail`
+
+## Important Notes
+
+- **Ruby Version**: The app uses Ruby 3.1.5 for Heroku deployment (specified in `runtime.txt` and `Gemfile`)
+- **Local Development**: You can continue using Ruby 2.6.10 locally if needed, but Ruby 3.1.5 is recommended
+- **Buildpack**: If Heroku detects multiple buildpacks (Ruby/Python), set it explicitly: `heroku buildpacks:set heroku/ruby`
 
