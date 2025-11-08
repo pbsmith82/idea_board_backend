@@ -15,7 +15,7 @@ class IdeasController < ApplicationController
         if idea.save
             render json: IdeaSerializer.new(idea)
         else 
-            render json: {error: "Idea Couldn't Be Saved!"}
+            render json: {error: "Idea Couldn't Be Saved!", errors: idea.errors.full_messages}, status: :unprocessable_entity
         end 
 
     end
@@ -25,7 +25,7 @@ class IdeasController < ApplicationController
         if idea.update(idea_create_params)
             render json: IdeaSerializer.new(idea)
         else 
-            render json: {error: "Idea Couldn't Be Saved!"}
+            render json: {error: "Idea Couldn't Be Saved!", errors: idea.errors.full_messages}, status: :unprocessable_entity
         end
     end 
 
@@ -34,20 +34,11 @@ class IdeasController < ApplicationController
         idea.destroy 
         render json: {message: "Successfully Deleted Project: #{idea.title}!"}
     end
-    
-    def update 
-        idea = Idea.find(params[:id])
-        if idea.update(idea_create_params)
-            render json: IdeaSerializer.new(idea)
-        else 
-            render json: {error: "Idea Couldn't Be Saved!"}
-        end
-    end 
 
     private 
 
     def idea_create_params
-        params.require(:idea).permit(:title, :description, :likes, :component_id)
+        params.require(:idea).permit(:title, :description, :likes, :dislikes, :component_id)
     end
     
 end
