@@ -1,0 +1,17 @@
+.slugignore
+.git
+.gitignore
+.sass-cache
+coverage
+log/*
+tmp/*
+*.md
+config/secrets.yml
+config/database.yml
+db/*.sqlite3
+db/*.sqlite3-journal
+node_modules
+test
+spec
+*.log
+

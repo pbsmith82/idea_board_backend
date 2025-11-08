@@ -7,10 +7,12 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    # Allow requests from frontend URL (set via environment variable or allow all in development)
+    origins ENV['FRONTEND_URL'] || '*'
 
     resource '*',
       headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
+      credentials: false
   end
 end

@@ -1,0 +1,31 @@
+{
+  "name": "Idea Board Backend",
+  "description": "Rails API backend for Idea Board application",
+  "repository": "https://github.com/yourusername/idea_board_backend",
+  "keywords": ["rails", "api", "ideas"],
+  "env": {
+    "RAILS_ENV": {
+      "required": true,
+      "value": "production"
+    },
+    "FRONTEND_URL": {
+      "required": false,
+      "description": "Frontend URL for CORS configuration"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    "heroku-postgresql:mini"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
+
